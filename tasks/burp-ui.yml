@@ -27,8 +27,10 @@
   tags:
     - config
   template:
-    src: burpui.cfg.j2
-    dest: /etc/burp/burpui.cfg
+    src: "{{ item }}.j2"
+    dest: "{{ burp_conf_dir }}/{{ item }}"
+  with_items:
+    - burpui.cfg
   notify: restart burp-ui
 
 - name: Burp web UI | nginx host

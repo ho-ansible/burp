@@ -9,6 +9,7 @@ burpui_host: burp.example.com
 burpui_localport: 5000
 
 burp_user: burp
+burp_conf_dir: /etc/burp
 burp_data_dir: /var/burp
 burp_pid_dir: /var/run/burp
 burp_ca_name: burp

@@ -1,5 +1,5 @@
-## /etc/burp/server.conf: burp backup server config
-# burp -c /etc/burp/server.conf
+## {{ burp_conf_dir }}/server.conf: burp backup server config
+# burp -c {{ burp_conf_dir }}/server.conf
 # {{ ansible_managed }}
 
 mode = server
@@ -12,8 +12,8 @@ status_port = {{ burp_status_port }}
 
 directory = {{ burp_data_dir }}
 pidfile = {{ burp_pid_dir }}/server.pid
-clientconfdir = /etc/burp/clients
-autoupgrade_dir = /etc/burp/upgrade/server
+clientconfdir = {{ burp_conf_dir }}/clients
+autoupgrade_dir = {{ burp_conf_dir }}/upgrade/server
 
 user = {{ burp_user }}
 group = {{ burp_user }}
@@ -34,14 +34,14 @@ cname_fqdn = 0
 client_can_delete = 0
 client_can_restore = 0
 
-ca_conf         = /etc/burp/CA/CA.conf
+ca_conf         = {{ burp_conf_dir }}/CA/CA.conf
 ca_burp_ca      = /usr/sbin/burp_ca
 ca_name         = {{ burp_ca_name }}
 ca_server_name  = {{ burp_server_CN }}
-ssl_dhfile      = /etc/burp/keys/dhfile.pem
-ssl_cert_ca     = /etc/burp/keys/ca.crt
-ssl_cert        = /etc/burp/keys/server.crt
-ssl_key         = /etc/burp/keys/server.key
+ssl_dhfile      = {{ burp_conf_dir }}/keys/dhfile.pem
+ssl_cert_ca     = {{ burp_conf_dir }}/keys/ca.crt
+ssl_cert        = {{ burp_conf_dir }}/keys/server.crt
+ssl_key         = {{ burp_conf_dir }}/keys/server.key
 ssl_key_password = password
 
 keep = 7

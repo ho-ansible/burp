@@ -1,4 +1,4 @@
-# /etc/burp/burp.conf: burp backup client config
+# {{ burp_conf_dir }}/burp.conf: burp backup client config
 # {{ansible_managed}}
 
 mode = client
@@ -7,22 +7,32 @@ server = {{ burp_server }}
 port = {{ burp_port }}
 status_port = {{ burp_status_port }}
 
-password = {{ burp_pw }}
 cname = {{ inventory_hostname }}
-
-pidfile = /var/run/burp.pid
-autoupgrade_dir = /etc/burp/upgrade/
-autoupgrade_os = {{ ansible_system }}-{{ ansible_architecture }}
+password = {{ burp_pw }}
 
 syslog = 0
 stdout = 1
 progress_counter = 0
 randomise = 1200
 
+{% if 'win' in group_names %}
+lockfile = {{ burp_conf_dir }}/lockfile
+{% else %}
+pidfile = /var/run/burp.pid
+{% endif %}
+
+autoupgrade_dir = {{ burp_conf_dir }}/upgrade/
+autoupgrade_os = {{ ansible_system }}-{{ ansible_architecture }}
+
 ca_burp_ca      = /usr/sbin/burp_ca
-ca_csr_dir      = /etc/burp/keys/
-ssl_cert_ca     = /etc/burp/keys/ca.crt
-ssl_cert        = /etc/burp/keys/{{ inventory_hostname }}.crt
-ssl_key         = /etc/burp/keys/{{ inventory_hostname }}.key
+ca_csr_dir      = {{ burp_conf_dir }}/keys/
+ssl_cert_ca     = {{ burp_conf_dir }}/keys/ca.crt
+ssl_cert        = {{ burp_conf_dir }}/keys/{{ inventory_hostname }}.crt
+ssl_key         = {{ burp_conf_dir }}/keys/{{ inventory_hostname }}.key
 ssl_key_password = password
 ssl_peer_cn	= {{ burp_server_CN }}
+
+{% if 'win' in group_names %}
+split_vss = 0
+strip_vss = 0
+{% endif %}
