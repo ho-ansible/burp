@@ -7,6 +7,8 @@ burp_status_port: 4972
 
 burpui_host: burp.example.com
 burpui_localport: 5000
+burpui_listen:
+  - "localhost:80"
 
 burp_user: burp
 burp_conf_dir: /etc/burp

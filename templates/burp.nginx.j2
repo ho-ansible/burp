@@ -1,5 +1,7 @@
 server {
-  listen {{ vpn_ip }}:80;
+{% for listen in burpui_listen %}
+  listen {{ listen }};
+{% endfor %}
 
   server_name {{ burpui_host }};
 
