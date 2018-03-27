@@ -33,6 +33,13 @@
     - burpui.cfg
   notify: restart burp-ui
 
+- name: Burp web UI | logrotate
+  tags:
+    - logrotate
+  content:
+    dest: /etc/logrotate.d/burp-ui
+    content: "/var/log/burp-ui.log {}"
+
 - name: Burp web UI | nginx host
   tags:
     - config
