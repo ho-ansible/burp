@@ -24,7 +24,12 @@ pidfile = /var/run/burp.pid
 autoupgrade_dir = {{ burp_conf_dir }}/upgrade/
 autoupgrade_os = {{ ansible_system }}-{{ ansible_architecture }}
 
-ca_burp_ca      = /usr/sbin/burp_ca
+{% if 'win' in group_names %}
+ca_burp_ca = {{ burp_conf_dir }}/bin/burp_ca.bat
+{% else %}
+ca_burp_ca = /usr/sbin/burp_ca
+{% endif %}
+
 ca_csr_dir      = {{ burp_conf_dir }}/keys/
 ssl_cert_ca     = {{ burp_conf_dir }}/keys/ca.crt
 ssl_cert        = {{ burp_conf_dir }}/keys/{{ inventory_hostname }}.crt
