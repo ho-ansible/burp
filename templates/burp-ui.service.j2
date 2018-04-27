@@ -7,7 +7,7 @@ Description = Web interface to burp backup server
 After = burp.service
 
 [Service]
-ExecStart = /usr/local/bin/burp-ui -l /var/log/burp-ui.log -p {{ burpui_localport }}
+ExecStart = /usr/local/bin/burp-ui -l {{ burpui_log }} -p {{ burpui_localport }}
 
 [Install]
 WantedBy = multi-user.target

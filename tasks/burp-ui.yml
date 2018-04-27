@@ -38,7 +38,7 @@
     - logrotate
   content:
     dest: /etc/logrotate.d/burp-ui
-    content: "/var/log/burp-ui.log {}"
+    content: "{{ burpui_log }} {}"
 
 - name: Burp web UI | nginx config
   include_role:

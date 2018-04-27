@@ -9,6 +9,7 @@ burpui_host: burp.example.com
 burpui_localport: 5000
 burpui_listen:
   - "localhost:80"
+burpui_log: /var/log/burp-ui.log
 
 burp_user: burp
 burp_conf_dir: /etc/burp
