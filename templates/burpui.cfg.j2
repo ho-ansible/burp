@@ -16,10 +16,10 @@ liverefresh = 5
 storage = default
 session = default
 cache = default
-database = sqlite:////etc/burp/burpui.db
+database = sqlite:///{{ burp_conf_dir }}/burpui.db
 
 [Security]
-includes = /etc/burp
+includes = {{ burp_conf_dir }}
 enforce = false
 revoke = true
 cookietime = 14
@@ -34,8 +34,8 @@ noserverrestore = false
 [Burp2]
 burpbin = /usr/sbin/burp
 stripbin = /usr/sbin/vss_strip
-bconfcli = /etc/burp/burp.conf
-bconfsrv = /etc/burp/server.conf
+bconfcli = {{ burp_conf_dir }}/burp.conf
+bconfsrv = {{ burp_conf_dir }}/server.conf
 tmpdir = /tmp/burp-ui
 timeout = 15
 
