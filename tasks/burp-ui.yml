@@ -36,8 +36,8 @@
 - name: Burp web UI | logrotate
   tags:
     - logrotate
-  content:
-    dest: /etc/logrotate.d/burp-ui
+  copy:
+    dest: "/etc/logrotate.d/burp-ui"
     content: "{{ burpui_log }} {}"
 
 - name: Burp web UI | nginx config
