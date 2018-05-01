@@ -16,7 +16,6 @@
   - package
   package:
     name: librsync-dev
-    state: installed
 
 # Binaries compiled on a Debian host from git:
 # sudo apt-get install make pkg-config check g++ librsync-dev libz-dev libssl-dev uthash-dev libyajl-dev
