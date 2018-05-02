@@ -14,12 +14,10 @@
   tags:
     - package
   pip:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - markupsafe
-    - functools32
-    - "burp-ui[sql]"
+    name:
+      - markupsafe
+      - functools32
+      - "burp-ui[sql]"
   notify: restart burp-ui
 
 - name: Burp web UI | config
