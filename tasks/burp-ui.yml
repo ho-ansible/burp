@@ -4,12 +4,11 @@
   tags:
     - package
   package:
-    name: "{{ item }}"
-  with_items:
-    - python-pip
-    - libpython-dev
-    - libffi-dev
-    - libssl-dev
+    name:
+      - python-pip
+      - libpython-dev
+      - libffi-dev
+      - libssl-dev
 
 - name: Burp web UI | packages (pip)
   tags:
