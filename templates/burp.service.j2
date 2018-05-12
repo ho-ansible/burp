@@ -1,8 +1,7 @@
 [Unit]
 Description = Burp backup server
 After = local-fs.target
-BindsTo=tinc.service
-After=tinc.service
+BindToDevice={{ burp_iface }}
 
 [Service]
 ExecStart = /usr/sbin/burp -c /etc/burp/server.conf -F
