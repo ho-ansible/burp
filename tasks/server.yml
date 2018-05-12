@@ -1,6 +1,6 @@
 ---
 
-- name: Burp server | unprivileged user
+- name: burp | server | unprivileged user
   tags:
     - user
   user:
@@ -9,21 +9,20 @@
     home: "{{ burp_data_dir }}"
     system: yes
 
-- name: Burp server | config
+- name: burp | server | config
   tags:
-    - server
     - config
   template:
     src: "{{ item.src }}.j2"
     dest: "{{ burp_conf_dir }}/{{ item.dest }}/{{ item.src }}"
     owner: "{{ burp_user }}"
     mode: 0400
-  notify: restart burp
   with_items:
     - { src: server.conf, dest: "" }
     - { src: dhfile.pem, dest: keys }
+  notify: restart burp
 
-- name: Burp server | directories
+- name: burp | server | directories
   tags:
     - dir
   file:
@@ -36,7 +35,7 @@
     - "{{ burp_data_dir }}"
     - "{{ burp_pid_dir }}"
 
-- name: Burp server | cron | offsite backup
+- name: burp | server | cron | offsite backup
   tags:
     - cron
   cron:
@@ -47,20 +46,17 @@
     hour: 3
     job: "mountpoint {{ burp_offsite }} && rsync -PaCHq --delete-after --bwlimit 5M {{ burp_data_dir }} {{ burp_offsite }}"
 
-- name: Burp server | systemd service
+- name: burp | server | systemd service
   tags:
-    - server
     - systemd
-  copy:
-    src: burp.service
-    dest: /etc/systemd/system
-  notify: restart burp
+  template:
+    src: burp.service.j2
+    dest: /etc/systemd/system/burp.service
+  notify: daemon-reload burp
 
-- name: Burp server | service
+- name: burp | server | service
   tags:
-    - server
     - service
   service:
     name: burp
     state: started
-    daemon_reload: yes
