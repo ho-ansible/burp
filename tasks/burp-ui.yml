@@ -1,6 +1,6 @@
 ---
 
-- name: Burp web UI | packages
+- name: burp | web UI | packages
   tags:
     - package
   package:
@@ -10,7 +10,7 @@
       - libffi-dev
       - libssl-dev
 
-- name: Burp web UI | packages (pip)
+- name: burp | web UI | packages (pip)
   tags:
     - package
   pip:
@@ -20,7 +20,7 @@
       - "burp-ui[sql]"
   notify: restart burp-ui
 
-- name: Burp web UI | config
+- name: burp | web UI | config
   tags:
     - config
   template:
@@ -30,20 +30,20 @@
     - burpui.cfg
   notify: restart burp-ui
 
-- name: Burp web UI | logrotate
+- name: burp | web UI | logrotate
   tags:
     - logrotate
   copy:
     dest: "/etc/logrotate.d/burp-ui"
     content: "{{ burpui_log }} {}"
 
-- name: Burp web UI | nginx config
+- name: burp | web UI | nginx config
   include_role:
     name: nginx
     tasks_from: site.yml
   with_items: burp
 
-- name: Burp web UI | systemd service
+- name: burp | web UI | systemd service
   tags:
     - systemd
   template:
@@ -51,7 +51,7 @@
     dest: /etc/systemd/system/burp-ui.service
   notify: restart burp-ui
 
-- name: Burp web UI | service
+- name: burp | web UI | service
   tags:
     - service
   service:

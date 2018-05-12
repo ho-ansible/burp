@@ -1,6 +1,6 @@
 ---
 
-- name: burp backup | directories
+- name: burp | client | directories
   tags:
   - dirs
   file:
@@ -11,7 +11,7 @@
   - keys
   - upgrade
 
-- name: burp backup | dependencies
+- name: burp | client | dependencies
   tags:
   - package
   package:
@@ -26,7 +26,7 @@
 # ./configure --prefix=/usr --sysconfdir=/etc/burp --localstatedir=/var
 # make
 
-- name: burp backup | executables
+- name: burp | client | executables
   tags:
   - binary
   copy:
@@ -37,15 +37,15 @@
   - burp
   - vss_strip
 
-- name: burp backup | scripts
+- name: burp | client | scripts
   copy:
     src: burp_ca
     dest: /usr/sbin/
     mode: 0755
 
-- name: burp backup | config
+- name: burp | client | config
   tags:
-  - config
+    - config
   template:
     src: "{{ item }}.j2"
     dest: "{{ burp_conf_dir }}/{{ item }}"
@@ -53,7 +53,7 @@
   with_items:
     - burp.conf
 
-- name: burp backup | cron
+- name: burp | client | cron
   tags:
   - cron
   cron:
