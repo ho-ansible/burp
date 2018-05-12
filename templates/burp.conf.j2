@@ -16,6 +16,10 @@ progress_counter = 0
 randomise = 1200
 
 {% if 'win' in group_names %}
+ratelimit = 3 # Mbps send
+{% endif %}
+
+{% if 'win' in group_names %}
 lockfile = {{ burp_conf_dir }}/lockfile
 {% else %}
 pidfile = /var/run/burp.pid
