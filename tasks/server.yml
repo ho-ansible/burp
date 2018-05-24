@@ -60,3 +60,4 @@
   service:
     name: burp
     state: started
+    enabled: yes

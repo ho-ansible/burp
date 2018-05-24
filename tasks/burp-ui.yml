@@ -55,3 +55,4 @@
   service:
     name: burp-ui
     state: started
+    enabled: yes
