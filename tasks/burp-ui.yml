@@ -24,10 +24,8 @@
   tags:
     - config
   template:
-    src: "{{ item }}.j2"
-    dest: "{{ burp_conf_dir }}/{{ item }}"
-  with_items:
-    - burpui.cfg
+    src: burpui.cfg.j2
+    dest: "{{ burp_conf_dir }}/burpui.cfg"
   notify: restart burp-ui
 
 - name: burp | web UI | logrotate
@@ -41,7 +39,7 @@
   include_role:
     name: nginx
     tasks_from: site.yml
-  with_items: burp
+  loop: [ burp ]
 
 - name: burp | web UI | systemd service
   tags:

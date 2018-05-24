@@ -17,7 +17,7 @@
     dest: "{{ burp_conf_dir }}/{{ item.dest }}/{{ item.src }}"
     owner: "{{ burp_user }}"
     mode: 0400
-  with_items:
+  loop:
     - { src: server.conf, dest: "" }
     - { src: dhfile.pem, dest: keys }
   notify: restart burp
@@ -31,7 +31,7 @@
     owner: "{{ burp_user }}"
     group: "{{ burp_user }}"
     mode: 0750
-  with_items:
+  loop:
     - "{{ burp_data_dir }}"
     - "{{ burp_pid_dir }}"
 
