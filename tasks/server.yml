@@ -44,7 +44,7 @@
     user: root
     minute: 12
     hour: 3
-    job: "mountpoint {{ burp_offsite }} && rsync -PaCHq --delete-after --bwlimit 5M {{ burp_data_dir }} {{ burp_offsite }}"
+    job: "touch {{ burp_offsite }}/.t && rsync -PaCHq --delete-after --bwlimit 5M {{ burp_data_dir }} {{ burp_offsite }}"
 
 - name: burp | server | systemd service
   tags:
@@ -60,3 +60,4 @@
   service:
     name: burp
     state: started
+    enabled: yes
