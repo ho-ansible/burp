@@ -36,10 +36,11 @@
     content: "{{ burpui_log }} {}"
 
 - name: burp | web UI | nginx config
+  vars:
+    site: burp
   include_role:
     name: nginx
     tasks_from: site.yml
-  loop: [ burp ]
 
 - name: burp | web UI | systemd service
   tags:
