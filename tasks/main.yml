@@ -51,6 +51,15 @@
     dest: "{{ burp_conf_dir }}/burp.conf"
     mode: 0640
 
+- name: burp | client | SSL workaround
+  tags:
+    - config
+  replace:
+    path: /etc/ssl/openssl.cnf
+    after: '\[system_default_sect\]'
+    regexp: '^(CipherString = DEFAULT@SECLEVEL)=2$'
+    replace: '\1=1'
+
 - name: burp | client | cron
   tags:
   - cron
