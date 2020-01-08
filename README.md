@@ -3,6 +3,22 @@ Graham Keeling's backup software.
 This role is for a client that will send its backups to a
 remote [server](https://github.com/ho-ansible/burp-server).
 
+## Compiling binaries
+For now, this role assumes you have precompiled binaries for the appropriate
+version and platforms, stored under `files/bin`.
+It would probably be better to create versioned packages for the OS.
+
+To compile, setup a Debian build box as follows:
+```
+sudo apt-get install make pkg-config check g++ librsync-dev libz-dev libssl-dev uthash-dev libyajl-dev
+sudo apt-get install autoconf automake libtool
+git clone https://github.com/grke/burp && cd burp/
+git checkout {{ burp_version }}
+autoreconf -fis
+./configure --prefix=/usr --sysconfdir=/etc/burp --localstatedir=/var
+make
+```
+
 ## Requirements
 Only tested on Debian stable, for now.
 
