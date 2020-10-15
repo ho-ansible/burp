@@ -30,16 +30,12 @@ Only tested on Debian stable, for now.
 + `burp_server_CN` (default: burp): Common Name on SSL cert presented by server
 + `burp_pw` (default: none): simple pre-shared password authenticating client-server communication
 
+## Playbooks
++ `main.yml`: apply role
++ `uninstall.yml`: remove. Run before removing config from inventory.
+
 ## Dependencies
 None.
-
-## Example Playbook
-
-```
-- hosts: all
-  roles:
-    - { role: ho-ansible.burp }
-```
 
 ## License
 + burp is licensed [AGPLv3](https://burp.grke.org/licence.html).
