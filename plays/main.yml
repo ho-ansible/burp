@@ -1,10 +1,11 @@
 #! /usr/bin/env ansible-playbook
 # Configure template role
-# Replace 'all' with your own inventory group
+# Replace 'burp' with your own inventory group
 ---
-- name: template | template role
-  hosts: all
+- name: burp | backup software
+  hosts: burp
   roles:
-  - role: template
+  - role: burp
     tags:
-    - template
+    - burp
+    - backup
