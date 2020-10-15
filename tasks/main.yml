@@ -8,16 +8,16 @@
     state: directory
     mode: 0750
   loop:
-    - keys
-    - upgrade
+  - keys
+  - upgrade
 
 - name: burp | client | dependencies
   tags:
   - package
   package:
     name: 
-      - librsync-dev
-      - systemd-cron
+    - librsync-dev
+    - systemd-cron
 
 - name: burp | client | executables
   tags:
@@ -27,8 +27,8 @@
     dest: /usr/sbin/
     mode: 0755
   loop:
-    - burp
-    - vss_strip
+  - burp
+  - vss_strip
 
 - name: burp | client | scripts
   copy:
@@ -38,7 +38,7 @@
 
 - name: burp | client | config
   tags:
-    - config
+  - config
   template:
     src: burp.conf.j2
     dest: "{{ burp_conf_dir }}/burp.conf"
@@ -46,7 +46,7 @@
 
 - name: burp | client | SSL workaround
   tags:
-    - config
+  - config
   replace:
     path: /etc/ssl/openssl.cnf
     after: '\[system_default_sect\]'
