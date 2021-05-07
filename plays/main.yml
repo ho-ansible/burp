@@ -1,9 +1,8 @@
 #! /usr/bin/env ansible-playbook
-# Configure template role
-# Replace 'burp' with your own inventory group
+# Configure backup client
 ---
 - name: burp | backup software
-  hosts: burp
+  hosts: all
   roles:
   - role: burp
     tags:
