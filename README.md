@@ -11,7 +11,7 @@ It would probably be better to create versioned packages for the OS.
 To compile, setup a Debian build box as follows:
 ```
 sudo apt-get install autoconf automake libtool g++ pkg-config
-sudo apt-get install librsync-dev libz-dev libssl-dev uthash-dev libyajl-dev libncurses-dev
+sudo apt-get install librsync-dev libz-dev libssl-dev uthash-dev libyajl-dev libncurses-dev libsystemd-dev
 git clone https://github.com/grke/burp && cd burp/
 git checkout {{ burp_version }}
 autoreconf -fis
